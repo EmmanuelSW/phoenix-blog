@@ -1,0 +1,21 @@
+<h2>Ver Post <%= @post.id %></h2>
+
+<ul>
+
+  <li>
+    <strong>Título:</strong>
+    <%= @post.title %>
+  </li>
+
+  <li>
+    <strong>Contenido:</strong>
+    <%= @post.body %>
+  </li>
+
+</ul>
+
+<%= render "comment_form.html", post: @post, changeset: @changeset, action: post_post_path(@conn, :add_comment, @post) %>
+<%= render "comments.html", post: @post %>
+
+<%= link "Editar ", to: post_path(@conn, :edit, @post) %>
+<%= link " Volver", to: post_path(@conn, :index) %>

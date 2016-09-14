@@ -1,0 +1,29 @@
+<h2>Listado de Posts</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Título</th>
+      <th>Contenido</th>
+      <th>Cantidad</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for {post, count} <- @posts do %>
+    <tr>
+      <td><%= post.title %></td>
+      <td><%= post.body %></td>
+      <td><%= count %></td>
+
+      <td class="text-right">
+        <%= link "Ver", to: post_path(@conn, :show, post), class: "btn btn-default btn-xs" %>
+        <%= link "Editar", to: post_path(@conn, :edit, post), class: "btn btn-default btn-xs" %>
+        <%= link "Eliminar", to: post_path(@conn, :delete, post), method: :delete, data: [confirm: "Estas seguro?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "Crea un Post!", to: post_path(@conn, :new), class: "btn btn-success" %>
